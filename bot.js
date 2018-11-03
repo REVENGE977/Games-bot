@@ -4,14 +4,14 @@ const fs = require("fs");
 const Canvas = require("canvas");
 const jimp = require("jimp");
    let points = {}
-   //439187325503930369
-const ner = '$'
+   
+const prefix = '#'
   client.on('message', message => {
     if(message.author.bot) return;
             if (!points[message.author.id]) points[message.author.id] = {
              points: 0,id: message.author.id
            };
-              if (message.content.startsWith(ner + 'فكك')) {
+              if (message.content.startsWith(prefix + 'فكك')) {
                 if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
               const type = require('./fkk.json');
@@ -58,7 +58,7 @@ const ner = '$'
                                  ctx.clip();
                                  ctx.drawImage(ava, 8, 18, 128, 126);   
 message.channel.sendFile(canvas.toBuffer());
- })//439187325503930369
+ })
              
                       message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })//وقت الاجابة
                       .then((collected) => {
@@ -90,7 +90,7 @@ client.on('message', message => {
 	 if(message.author.bot) return;
   if (!points[message.author.id]) points[message.author.id] = {
              points: 0,id: message.author.id
-           };if (message.content.startsWith(ner + 'لغز')) {
+           };if (message.content.startsWith(prefix + 'لغز')) {
 	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
 const type = require('./quiz.json');
@@ -135,7 +135,7 @@ message.channel.send('**لديك 15 ثانيه لحل هذه الغز**').then(m
                                  ctx.drawImage(ava, 8, 18, 128, 126);   
 message.channel.sendFile(canvas.toBuffer());
  })
-             //439187325503930369
+             
                       message.channel.awaitMessages(filter, { maxMatches: 1, time: 30000, errors: ['time'] })//وقت الاجابة
                       .then((collected) => {
                            var embed = new Discord.RichEmbed()
@@ -165,7 +165,7 @@ client.on('message', message => {
      if (!points[message.author.id]) points[message.author.id] = {
              points: 0,id: message.author.id
            };
-    if (message.content.startsWith(ner+ 'ركب')) {
+    if (message.content.startsWith(prefix+ 'ركب')) {
       if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
     
     const type = require('./rkb.json');
@@ -186,7 +186,7 @@ client.on('message', message => {
             ground.src = Background;
             ctx.drawImage(ground, 0, 0, 400, 150);
  
-});//439187325503930369
+});
  let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
                jimp.read(url, (err, ava) => {
                     if (err) return console.log(err);
@@ -245,7 +245,7 @@ client.on('message', message => {
        if (!points[message.author.id]) points[message.author.id] = {
              points: 0,id: message.author.id
            };
-      if (message.content.startsWith(ner + 'كتابه')) {
+      if (message.content.startsWith(prefix + 'كتابه')) {
         if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
       
       const type = require('./type.json');
@@ -267,7 +267,7 @@ client.on('message', message => {
             ground.src = Background;
             ctx.drawImage(ground, 0, 0, 400, 150);
  
-});//439187325503930369
+});
  let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
                jimp.read(url, (err, ava) => {
                     if (err) return console.log(err);
@@ -323,7 +323,7 @@ message.channel.sendFile(canvas.toBuffer());
       if (!points[message.author.id]) points[message.author.id] = {
              points: 0,id: message.author.id
            };
-    if (message.content.startsWith(ner + 'رياضيات')) {
+    if (message.content.startsWith(prefix + 'رياضيات')) {
       if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
     
     const type = require('./math.json');
@@ -411,23 +411,23 @@ message.channel.sendFile(canvas.toBuffer());
 
 client.on('message', message => {
       if(message.author.bot) return;
-if (message.content.startsWith(ner + 'top')) {
+if (message.content.startsWith(prefix + 'top')) {
     let _top = 1;
      let topp = Object.values(points);
  let top = topp.slice(0, 10).map(users => `**\`.${_top++}\` | <@${users.id}> \`XP: ${users.points}\`**`).sort((a, b) => a > b).join('\n');
-    const nerlor = new Discord.RichEmbed()
+    const prefixlor = new Discord.RichEmbed()
       .setTitle("Leaderboard")
       .setAuthor(client.user.username, client.user.avatarURL)
       .setDescription(top,true)
-   //439187325503930369
-  	message.channel.sendEmbed(nerlor)
+   
+  	message.channel.sendEmbed(prefixlor)
 }
   
 });
 
 client.on('message', message => {
       if(message.author.bot) return;
-if (message.content.startsWith(ner + 'نقاطي')) {
+if (message.content.startsWith(prefix + 'نقاطي')) {
 	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 	let userData = points[message.author.id];
 	let embed = new Discord.RichEmbed()
@@ -437,6 +437,19 @@ if (message.content.startsWith(ner + 'نقاطي')) {
 	message.channel.sendEmbed(embed)
   }
 });
+client.on('message', message => {
+  if(message.author.bot) return;
+if (message.content.startsWith(prefix + 'points')) {
+if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+let userData = points[message.author.id];
+let embed = new Discord.RichEmbed()
+.setAuthor(`${message.author.tag}`, message.author.avatarURL)
+.setColor('#000000')
+.setDescription(`نقاطك: \`${userData.points}\``)
+message.channel.sendEmbed(embed)
+}
+});
+
 
 client.on("message", message => {
  if (message.content === "*مساعدة") {
@@ -457,16 +470,16 @@ client.on("message", message => {
    🎮*top
 ══════════ஜ۩۞۩ஜ════════════ 
  `)
- .setFooter(`by :@Tarỉq#0004`)
+ .setFooter(`by :@OrochiX#9177`)
    message.channel.sendEmbed(embed)
    
    }
    }); 
    
-//439187325503930369
+
 client.on('message' , message => {
   if(message.author.bot) return;
-  if(message.content.startsWith(ner + "xo")) {
+  if(message.content.startsWith(prefix + "xo")) {
  let array_of_mentions = message.mentions.users.array();
   let symbols = [':o:', ':heavy_multiplication_x:']
   var grid_message;
@@ -513,7 +526,7 @@ client.on('message' , message => {
       .then((new_new_message) => {
         require('./xo.js')(client, message, new_new_message, player1_id, player2_id, turn_id, symbol, symbols, grid_message);
       })
-      .then(console.log("Successful tictactoe listener initialization"))
+      .then(console.log("Successful tictactoe listeprefix initialization"))
       .catch(console.error);
     })
     .then(console.log("Successful tictactoe react initialization"))
@@ -567,9 +580,9 @@ reaction3.on("collect", r => {
     })
 }
 });
-const devs = ["439187325503930369"]
+const devs = ["429972030092476437"]
 
-const adminprefix = "2";
+const adminprefix = "#";
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!devs.includes(message.author.id)) return;
